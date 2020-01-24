@@ -1,10 +1,13 @@
 <?php
 
 namespace App;
+use File;
 
-use Illuminate\Database\Eloquent\Model;
-
-class Documentation extends Model
+class Documentation
 {
-    //
+    public function get($file='documentation.md')
+    {
+      $content = File::get($this->path($file));
+      return $this->replaceLinks($content);
+    }
 }
